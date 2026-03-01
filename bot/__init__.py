@@ -1,0 +1,1 @@
+"""GostForge Telegram Bot package."""

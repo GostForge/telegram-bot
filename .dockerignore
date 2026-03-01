@@ -1,0 +1,33 @@
+# VCS / CI
+.git/
+.github/
+
+# Python caches and env
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Build/test artifacts
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Local/editor
+.vscode/
+.idea/
+.DS_Store
+
+# Env / logs
+.env
+.env.*
+*.log
+
+# Other files not required by current Dockerfile
+

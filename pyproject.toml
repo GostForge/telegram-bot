@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "gostforge-telegram"
+version = "0.2.0"
+description = "GostForge Telegram Bot — Markdown → ГОСТ DOCX/PDF via Internal API"
+authors = ["GostForge Team"]
+readme = "README.md"
+packages = [{ include = "bot" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiogram = "^3.15.0"
+httpx = "^0.28.0"
+pydantic-settings = "^2.7.0"
+
+[tool.poetry.scripts]
+gostforge-bot = "bot.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
