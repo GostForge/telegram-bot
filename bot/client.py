@@ -34,12 +34,12 @@ class BackendClient:
     async def submit_conversion(
         self, chat_id: int, file_bytes: bytes, filename: str, output_format: str
     ) -> dict:
-        """POST /internal/convert/quick — submit a conversion job (ZIP archive)."""
+        """POST /api/v1/conversions — submit a conversion job (ZIP archive)."""
         import json as _json
         client = await self._get_client()
         options = _json.dumps({"outputFormat": output_format, "syntaxHighlighting": True})
         resp = await client.post(
-            f"{self._base}/internal/convert/quick",
+            f"{self._base}/api/v1/conversions",
             headers=self._headers(chat_id),
             files={"archive": (filename, file_bytes, "application/zip")},
             data={"options": options},
@@ -48,20 +48,20 @@ class BackendClient:
         return resp.json()
 
     async def get_job_status(self, job_id: str) -> dict:
-        """GET /internal/convert/quick/jobs/{jobId}"""
+        """GET /api/v1/conversions/jobs/{jobId}"""
         client = await self._get_client()
         resp = await client.get(
-            f"{self._base}/internal/convert/quick/jobs/{job_id}",
+            f"{self._base}/api/v1/conversions/{job_id}",
             headers=self._headers(),
         )
         resp.raise_for_status()
         return resp.json()
 
     async def download_result(self, job_id: str, fmt: str) -> bytes:
-        """GET /internal/convert/quick/jobs/{jobId}/download/{format}"""
+        """GET /api/v1/conversions/jobs/{jobId}/download/{format}"""
         client = await self._get_client()
         resp = await client.get(
-            f"{self._base}/internal/convert/quick/jobs/{job_id}/download/{fmt}",
+            f"{self._base}/api/v1/conversions/{job_id}/result",
             headers=self._headers(),
         )
         resp.raise_for_status()
